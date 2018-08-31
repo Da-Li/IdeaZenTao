@@ -15,4 +15,6 @@ public class ZenTaoConstant {
 	public static final String ZEN_TAO_API_MY_BUG_URL = "/my-bug.json";
 	public static final String ZEN_TAO_API_PARAM_ACCOUNT = "account";
 	public static final String ZEN_TAO_API_PARAM_PASSWORD = "password";
+
+	public static final String ZEN_TAO_BUG_POINT = "您有bug %s 个待解决";
 }

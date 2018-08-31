@@ -1,6 +1,7 @@
 package com.js_ku.zentao.component;
 
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.IconLoader;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
 import org.jetbrains.annotations.NotNull;
@@ -9,6 +10,8 @@ import org.jetbrains.annotations.NotNull;
  * Created by da-li on 2018/2/9.
  */
 public class MyToolWindowFactory implements ToolWindowFactory {
+
+	private static ToolWindow toolWindow;
 	@Override
 	public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
 //		project
@@ -22,6 +25,9 @@ public class MyToolWindowFactory implements ToolWindowFactory {
 	public void init(ToolWindow window) {
 		window.setTitle("aaa");
 		window.setShowStripeButton(true);
+
+		window.setIcon(IconLoader.getIcon("/red/number/number_9.png"));
+		toolWindow = window;
 //		window.getComponent().add(new ToolWindowGui().getMainPanel());
 
 	}
@@ -35,4 +41,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
 	public boolean isDoNotActivateOnStart() {
 		return false;
 	}
+
+
+
 }

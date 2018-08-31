@@ -24,9 +24,6 @@ public class ToolWindowGui implements Configurable {
 	private JButton loginBtn;
 	private boolean isLogin;
 	private PropertiesComponent prop = PropertiesComponent.getInstance();
-	//TODO 1.测试登录
-	//TODO 2.存session
-	//TODO 3.
 
 
 	@Nls
@@ -63,6 +60,7 @@ public class ToolWindowGui implements Configurable {
 		StringUtil.isNotEmpty(zentaoPsd.getText());
 
 		loginBtn.setEnabled(allHaveContent);
+
 		if (allHaveContent){
 			prop.setValue(ZenTaoConstant.ZEN_TAO_URL,zentaoUrl.getText());
 			prop.setValue(ZenTaoConstant.ZEN_TAO_ACCOUNT,zentaoAccount.getText());

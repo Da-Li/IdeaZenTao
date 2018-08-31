@@ -12,5 +12,8 @@ public class HelloAction  extends AnAction {
 
         Project project = event.getProject();
         Messages.showMessageDialog(project, "Hello world!", "Greeting", Messages.getInformationIcon());
+
     }
+
+
 }

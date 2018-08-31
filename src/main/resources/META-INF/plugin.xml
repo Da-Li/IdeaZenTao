@@ -14,11 +14,19 @@
     <depends>com.intellij.modules.lang</depends>
     -->
 
+    <application-components>
+        <component>
+            <implementation-class>com.js_ku.zentao.IdeaZenTao</implementation-class>
+        </component>
+    </application-components>
+
     <extensions defaultExtensionNs="com.intellij">
         <!--window tool -->
-        <toolWindow id="Zen Tao" icon="/icon/Category.png" anchor="right" factoryClass="com.js_ku.zentao.component.MyToolWindowFactory"/>
+        <toolWindow id="IdeaZenTao" icon="/red/icon/windowTool.png" anchor="right" factoryClass="com.js_ku.zentao.component.MyToolWindowFactory"/>
         <!--settings-->
         <applicationConfigurable instance="com.js_ku.zentao.component.ToolWindowGui"/>
+        <postStartupActivity
+                implementation="com.js_ku.zentao.component.PluginStartupActivity" />
     </extensions>
 
     <actions>
@@ -31,8 +39,11 @@
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
 
-        <action id="SayHelloAction1" class="com.js_ku.zentao.component.SayHelloAction" text="SayHello!!" >
-            <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+        <action id="showBugNumberAction" class="com.js_ku.zentao.component.ShowBugNumberAction" text="请在setting > IdeaZenTao 中登录" icon="IdeaZenTaoIcons.UNLOGIN">
+            <add-to-group group-id="MainToolBar" anchor="last"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+            <add-to-group group-id="ChangesViewPopupMenu" anchor="last"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>

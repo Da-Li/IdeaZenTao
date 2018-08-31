@@ -9,7 +9,7 @@ import javax.swing.*;
  */
 public interface IconInterface {
 	Icon NUMBER_1 = IconLoader.getIcon("/icons/number_1.png");
-	Icon NUMBER_2 = IconLoader.getIcon("/icons/number_2.png");
+	Icon NUMBER_2 = IconLoader.getIcon("/icons/number_2_.png");
 	Icon NUMBER_3 = IconLoader.getIcon("/icons/number_3.png");
 	Icon NUMBER_4 = IconLoader.getIcon("/icons/number_4.png");
 	Icon NUMBER_5 = IconLoader.getIcon("/icons/number_5.png");

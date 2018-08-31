@@ -4,6 +4,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.util.IconLoader;
 import com.js_ku.zentao.IdeaZenTao;
 import com.js_ku.zentao.api.ZenTaoApi;
+import com.js_ku.zentao.api.model.ZenTaoConstant;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -37,8 +38,10 @@ public class ZenTaoTimer {
 				@Override
 				public void run() {
 					Integer bugSize = ZenTaoApi.getBugs();
-					e.getPresentation().setText(bugSize+"");
+
+					e.getPresentation().setText(String.format(ZenTaoConstant.ZEN_TAO_BUG_POINT,bugSize));
 					e.getPresentation().setIcon(IconLoader.getIcon("/icons/number_"+bugSize+".png"));
+
 				}};
 			timer = new Timer();
 			timer.schedule(task, ONE_SECOND, 1000);
