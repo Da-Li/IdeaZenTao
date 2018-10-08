@@ -9,6 +9,13 @@ public class BugData {
 	private Integer product;
 	private String title;
 
+	public BugData() {
+
+	}
+	public BugData(String title) {
+		this.title = title;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -32,4 +39,6 @@ public class BugData {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+
 }

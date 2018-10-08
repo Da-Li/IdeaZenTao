@@ -1,9 +1,11 @@
 package com.js_ku.zentao.component;
 
+import com.intellij.ide.ui.UINumericRange;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.ui.StripeTable;
 import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -13,24 +15,37 @@ import javax.swing.table.TableModel;
  * Created by da-li on 2018/2/22.
  */
 public class ZenTaoConfigurable implements Configurable {
+	@Nullable
+	public String getHelpTopic() {
+		return null;
+	}
+
+	public boolean isModified(@NotNull JTextField textField, @NotNull String value) {
+		return false;
+	}
+
+	public boolean isModified(@NotNull JTextField textField, int value, @NotNull UINumericRange range) {
+		return false;
+	}
+
+	public boolean isModified(@NotNull JToggleButton toggleButton, boolean value) {
+		return false;
+	}
+
 	@Nls
-	@Override
 	public String getDisplayName() {
 		return "ZenTao Config";
 	}
 
 	@Nullable
-	@Override
 	public JComponent createComponent() {
 		return null;
 	}
 
-	@Override
 	public boolean isModified() {
 		return false;
 	}
 
-	@Override
 	public void apply() throws ConfigurationException {
 
 	}
@@ -44,5 +59,15 @@ public class ZenTaoConfigurable implements Configurable {
 			super(model);
 
 		}
+	}
+
+	@Override
+	public void reset() {
+
+	}
+
+	@Override
+	public void disposeUIResources() {
+
 	}
 }

@@ -24,22 +24,20 @@
         <!--window tool -->
         <toolWindow id="IdeaZenTao" icon="/red/icon/windowTool.png" anchor="right" factoryClass="com.js_ku.zentao.component.MyToolWindowFactory"/>
         <!--settings-->
-        <applicationConfigurable instance="com.js_ku.zentao.component.ToolWindowGui"/>
-        <postStartupActivity
-                implementation="com.js_ku.zentao.component.PluginStartupActivity" />
+        <applicationConfigurable instance="com.js_ku.zentao.component.IdeaZenTaoConfigurable"/>
     </extensions>
 
     <actions>
         <!--  -->
         <group id="MyPlugin.SampleMenu" text="Greeting" description="Greeting menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="Myplugin.Textboxes" class="HelloAction" text="Hello" description="禅道暂停获取"/>
+            <action id="Myplugin.Textboxes" class="com.js_ku.zentao.HelloAction" text="Hello" description="禅道暂停获取"/>
         </group>
         <action id="ZenTaoPluginToggle" class="com.js_ku.zentao.component.ZenTaoPluginToggleAction" text="禅道" description="开启关闭 禅道插件">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
 
-        <action id="showBugNumberAction" class="com.js_ku.zentao.component.ShowBugNumberAction" text="请在setting > IdeaZenTao 中登录" icon="IdeaZenTaoIcons.UNLOGIN">
+        <action id="showBugNumberAction" class="com.js_ku.zentao.component.ShowBugNumberAction" text="请在setting > IdeaZenTao 中登录" icon="IdeaZenTaoIcons.NO_LOGIN">
             <add-to-group group-id="MainToolBar" anchor="last"/>
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
             <add-to-group group-id="ChangesViewPopupMenu" anchor="last"/>

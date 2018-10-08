@@ -1,10 +1,10 @@
 package com.js_ku.zentao.timer;
 
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.util.IconLoader;
 import com.js_ku.zentao.IdeaZenTao;
 import com.js_ku.zentao.api.ZenTaoApi;
 import com.js_ku.zentao.api.model.ZenTaoConstant;
+import icons.IdeaZenTaoIcons;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,13 +16,10 @@ public class ZenTaoTimer {
 
 	private static long ONE_SECOND = 1000;
 
-	private volatile long value;
 
-	private volatile long creationValue;
 
 	private volatile boolean paused = !IdeaZenTao.isEnabled();
 
-	private volatile boolean finished;
 
 	private Timer timer;
 
@@ -32,33 +29,24 @@ public class ZenTaoTimer {
 
 	}
 
-	public void startPause(AnActionEvent e){
-		if (!paused){
-			TimerTask task = new TimerTask() {
-				@Override
-				public void run() {
-					Integer bugSize = ZenTaoApi.getBugs();
+	public void start(AnActionEvent e){
 
+
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				if (!paused && IdeaZenTao.isLogin()){
+					Integer bugSize = ZenTaoApi.getSizeBugs();
 					e.getPresentation().setText(String.format(ZenTaoConstant.ZEN_TAO_BUG_POINT,bugSize));
-					e.getPresentation().setIcon(IconLoader.getIcon("/icons/number_"+bugSize+".png"));
+					e.getPresentation().setIcon(IdeaZenTaoIcons.getIconByBugSize(bugSize));
+				} else {
+					e.getPresentation().setIcon(IdeaZenTaoIcons.NO_LOGIN);
+				}
 
-				}};
-			timer = new Timer();
-			timer.schedule(task, ONE_SECOND, 1000);
-		} else {
-			timer.cancel();
-		}
-		paused = !paused;
+			}};
+		timer = new Timer();
+		timer.schedule(task, ONE_SECOND, 10000);
 	}
-
-
-	public void reset(){
-		paused = true;
-		value = creationValue;
-		if (timer != null) timer.cancel();
-	}
-
-
 
 }
 

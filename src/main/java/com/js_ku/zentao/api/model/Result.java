@@ -1,6 +1,6 @@
 package com.js_ku.zentao.api.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -10,7 +10,7 @@ public class Result<T>{
 
 	private String status;
 
-	@SerializedName(value="data",alternate={"user"})
+	@JSONField(name = "data",alternateNames = "user")
 	private T data;
 
 	public boolean isSuccess() {

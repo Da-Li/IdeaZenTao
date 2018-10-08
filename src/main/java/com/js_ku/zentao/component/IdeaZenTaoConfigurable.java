@@ -15,7 +15,7 @@ import javax.swing.*;
 /**
  * Created by da-li on 2018/2/13.
  */
-public class ToolWindowGui implements Configurable {
+public class IdeaZenTaoConfigurable implements Configurable {
 
 	private JPanel rootPanel;
 	private JTextField zentaoAccount;
@@ -25,6 +25,11 @@ public class ToolWindowGui implements Configurable {
 	private boolean isLogin;
 	private PropertiesComponent prop = PropertiesComponent.getInstance();
 
+	@Nullable
+	@Override
+	public String getHelpTopic() {
+		return null;
+	}
 
 	@Nls
 	@Override
@@ -35,13 +40,6 @@ public class ToolWindowGui implements Configurable {
 	@Nullable
 	@Override
 	public JComponent createComponent() {
-//		try {
-//
-//			apply();
-//		} catch (ConfigurationException e) {
-//			e.printStackTrace();
-//		}
-
 		loginBtn.addActionListener(e -> {
 			if (ZenTaoApi.login()){
 				isLogin = true;
@@ -66,14 +64,20 @@ public class ToolWindowGui implements Configurable {
 			prop.setValue(ZenTaoConstant.ZEN_TAO_ACCOUNT,zentaoAccount.getText());
 			prop.setValue(ZenTaoConstant.ZEN_TAO_PSD,zentaoPsd.getText());
 		}
-		return isLogin;
+		return !isLogin;
 	}
 
 	@Override
 	public void apply() throws ConfigurationException {
-		prop.setValue(ZenTaoConstant.ZEN_TAO_URL,zentaoUrl.getText());
-		prop.setValue(ZenTaoConstant.ZEN_TAO_ACCOUNT,zentaoAccount.getText());
-		prop.setValue(ZenTaoConstant.ZEN_TAO_PSD,zentaoPsd.getText());
+
+		if (ZenTaoApi.login()){
+			isLogin = true;
+			prop.setValue(ZenTaoConstant.ZEN_TAO_URL,zentaoUrl.getText());
+			prop.setValue(ZenTaoConstant.ZEN_TAO_ACCOUNT,zentaoAccount.getText());
+			prop.setValue(ZenTaoConstant.ZEN_TAO_PSD,zentaoPsd.getText());
+		} else {
+			notice("请检查输入项");
+		}
 
 	}
 
@@ -97,8 +101,8 @@ public class ToolWindowGui implements Configurable {
 		panel.add(new JLabel(message));
 
 		JOptionPane jop = new JOptionPane();
-		JDialog dialog = jop.createDialog("message");
-		dialog.setSize(400, 200);
+		JDialog dialog = jop.createDialog("提示");
+		dialog.setSize(100, 200);
 		dialog.setContentPane(panel);
 		dialog.setVisible(true);
 
@@ -109,4 +113,8 @@ public class ToolWindowGui implements Configurable {
 //				NotificationType.ERROR);
 //		Notifications.Bus.notify(n);
 	}
+
+
+
+
 }

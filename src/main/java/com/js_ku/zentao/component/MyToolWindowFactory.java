@@ -1,7 +1,7 @@
 package com.js_ku.zentao.component;
 
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.IconLoader;
+import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
 import org.jetbrains.annotations.NotNull;
@@ -11,35 +11,41 @@ import org.jetbrains.annotations.NotNull;
  */
 public class MyToolWindowFactory implements ToolWindowFactory {
 
-	private static ToolWindow toolWindow;
 	@Override
 	public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-//		project
-		toolWindow.setTitle("aaaabb");
-//		toolWindow.getComponent().add(new ToolWindowGui().getMainPanel());
 
-//		toolWindow.
+		toolWindow.setTitle("aaaabb");
+
 	}
 
-	@Override
+
+
+
+
+
 	public void init(ToolWindow window) {
-		window.setTitle("aaa");
 		window.setShowStripeButton(true);
 
-		window.setIcon(IconLoader.getIcon("/red/number/number_9.png"));
-		toolWindow = window;
-//		window.getComponent().add(new ToolWindowGui().getMainPanel());
-
 	}
 
-	@Override
 	public boolean shouldBeAvailable(@NotNull Project project) {
+
 		return false;
 	}
 
-	@Override
 	public boolean isDoNotActivateOnStart() {
 		return false;
+	}
+
+	public class ToolWindowPanel extends SimpleToolWindowPanel {
+
+		public ToolWindowPanel(boolean vertical) {
+			super(vertical);
+		}
+
+		public ToolWindowPanel(boolean vertical, boolean borderless) {
+			super(vertical, borderless);
+		}
 	}
 
 

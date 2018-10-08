@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.intellij.ide.util.PropertiesComponent;
+import com.intellij.openapi.util.text.StringUtil;
+import com.js_ku.zentao.IdeaZenTao;
 import com.js_ku.zentao.api.model.*;
 import com.js_ku.zentao.api.util.ZenTaoHttpClient;
 
@@ -25,18 +27,21 @@ public class ZenTaoApi {
 
 	public static boolean login(){
 
-		if (isLoginBefore()){
-			return true;
+		if (StringUtil.isEmpty(prop.getValue(ZenTaoConstant.ZEN_TAO_ACCOUNT)) ||
+				StringUtil.isEmpty(prop.getValue(ZenTaoConstant.ZEN_TAO_PSD)) ||
+				StringUtil.isEmpty(prop.getValue(ZenTaoConstant.ZEN_TAO_URL))
+			){
+			return false;
 		}
 
-		prop.getValue(ZenTaoConstant.ZEN_TAO_URL);
-		prop.getValue(ZenTaoConstant.ZEN_TAO_ACCOUNT);
-		prop.getValue(ZenTaoConstant.ZEN_TAO_PSD);
-
-		String getSessionJson = ZenTaoHttpClient.get(prop.getValue(ZenTaoConstant.ZEN_TAO_URL)+"/api-getsessionid.json");
-
+		String getSessionJson = ZenTaoHttpClient.get(prop.getValue(ZenTaoConstant.ZEN_TAO_URL)+ZenTaoConstant.ZEN_TAO_API_GET_SESSION_ID_URL);
+		if (StringUtil.isEmpty(getSessionJson)){
+			IdeaZenTao.setlogin(false);
+			return false;
+		}
 		Result<SessionData> sessionDataResult= getData(getSessionJson,SessionData.class);
 		if (!sessionDataResult.isSuccess()){
+			IdeaZenTao.setlogin(false);
 			return false;
 		}
 
@@ -55,27 +60,28 @@ public class ZenTaoApi {
 			prop.setValue(ZenTaoConstant.ZEN_TAO_SESSION_NAME,sessionDataResult.getData().getSessionName());
 			prop.setValue(ZenTaoConstant.ZEN_TAO_SESSION_ID,sessionDataResult.getData().getSessionID());
 		}
+		IdeaZenTao.setlogin(userDataResult.isSuccess());
 		return userDataResult.isSuccess();
 	}
 
+	public static Integer getSizeBugs(){
+		Result<MyBugData> bugDataResult = getBugs();
+		if (bugDataResult.isSuccess() && bugDataResult.getData().getBugs() != null && !bugDataResult.getData().getBugs().isEmpty()){
+			return bugDataResult.getData().getBugs().size();
+		}
+		return 0;
+	}
 
-	public static Integer getBugs(){
+	public static Result<MyBugData> getBugs(){
 		if (!login()){
-			return null;
+			return new Result();
 		}
 		Map<String,String> param = new HashMap<>();
 		param.put(prop.getValue(ZenTaoConstant.ZEN_TAO_SESSION_NAME),prop.getValue(ZenTaoConstant.ZEN_TAO_SESSION_ID));
 		String responseJson = ZenTaoHttpClient.get(
 				prop.getValue(ZenTaoConstant.ZEN_TAO_URL)+ZenTaoConstant.ZEN_TAO_API_MY_BUG_URL,param
 		);
-
-
-		Result<MyBugData> result = getData(responseJson, MyBugData.class);
-		if (!result.isSuccess()){
-			return 0;
-		}
-		System.out.println(result.getData().getBugs().size());
-		return result.getData().getBugs().size();
+		return getData(responseJson, MyBugData.class);
 	}
 
 	private static <T> Result getData(String json, Class<T> clazz){
@@ -91,11 +97,6 @@ public class ZenTaoApi {
 		return userResult;
 	}
 
-	//TODO 判断是否已经登录
-	private static boolean isLoginBefore(){
-
-		return false;
-	}
 
 
 }
