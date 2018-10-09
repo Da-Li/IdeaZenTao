@@ -88,7 +88,7 @@ public class ZenTaoApi {
 
 		JSONObject jsonObject = JSON.parseObject(json);
 		JSONObject jsonObjectData = JSON.parseObject(jsonObject.getString("data"));
-		//SOME TIME IS USER SOME TIMES IS DATA ...
+
 		jsonObject.put("data",jsonObjectData);
 		json  = jsonObject.toJSONString();
 
@@ -97,6 +97,10 @@ public class ZenTaoApi {
 		return userResult;
 	}
 
+	public static String getBugUrlById(Integer id){
+
+		return prop.getValue(ZenTaoConstant.ZEN_TAO_URL)+ String.format(ZenTaoConstant.ZEN_TAO_API_BUG_DETAIL_URL,id);
+	}
 
 
 }

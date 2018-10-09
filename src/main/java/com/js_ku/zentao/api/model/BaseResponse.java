@@ -6,7 +6,9 @@ import org.apache.commons.lang.StringUtils;
  * Created by da-li on 2018/2/26.
  */
 public class BaseResponse {
+
 	private String status;
+	
 	private boolean success;
 
 	public String getStatus() {

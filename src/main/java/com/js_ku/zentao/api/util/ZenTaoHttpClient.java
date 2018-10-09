@@ -43,7 +43,7 @@ public class ZenTaoHttpClient {
 
 				String urlParam = URLEncodedUtils.format(nameValuePairParams, charset);
 
-				if (url.indexOf("?") > -1) {
+				if (url.contains("?")) {
 					newUrl = url + "&" + urlParam;
 				} else {
 					newUrl = url + "?" + urlParam;

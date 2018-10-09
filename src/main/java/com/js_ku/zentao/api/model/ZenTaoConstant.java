@@ -13,9 +13,11 @@ public class ZenTaoConstant {
 
 	public static final String ZEN_TAO_API_LOGIN_URL = "/user-login.json";
 	public static final String ZEN_TAO_API_MY_BUG_URL = "/my-bug.json";
+	public static final String ZEN_TAO_API_BUG_DETAIL_URL = "/bug-view-%s.html";
 	public static final String ZEN_TAO_API_GET_SESSION_ID_URL = "/api-getsessionid.json";
 	public static final String ZEN_TAO_API_PARAM_ACCOUNT = "account";
 	public static final String ZEN_TAO_API_PARAM_PASSWORD = "password";
 
 	public static final String ZEN_TAO_BUG_POINT = "您有bug %s 个待解决";
+
 }
