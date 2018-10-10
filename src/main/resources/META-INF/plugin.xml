@@ -4,10 +4,20 @@
     <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
-    ]]></description>
+      <h2>IdeaZenTao</h2>
+      <br/>
+      p><b>禅道 Idea 插件.</b></p>
+      p><b>提供bug数量提示，bug列表.</b></p>
+      p><b> <a href="https://github.com/Da-Li/IdeaZenTao">Github</a>.</b></p>
 
+
+    ]]></description>
+    <change-notes><![CDATA[
+      <ul>
+        <li>1.0 - ToolBar显示bug数量，左侧Tool Window 显示bug列表.</li>
+      </ul>
+      ]]>
+    </change-notes>
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <!-- uncomment to enable plugin in all products

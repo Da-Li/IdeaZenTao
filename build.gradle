@@ -29,8 +29,9 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      <ul>
+        <li>1.0 - ToolBar显示bug数量，左侧Tool Window 显示bug列表.</li>
+      </ul>"""
 }
 publishPlugin {
     username intellijPublishUsername
