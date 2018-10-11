@@ -1,6 +1,5 @@
 package com.js_ku.zentao.component;
 
-import com.intellij.ide.ui.UINumericRange;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.ui.StripeTable;
@@ -24,9 +23,6 @@ public class ZenTaoConfigurable implements Configurable {
 		return false;
 	}
 
-	public boolean isModified(@NotNull JTextField textField, int value, @NotNull UINumericRange range) {
-		return false;
-	}
 
 	public boolean isModified(@NotNull JToggleButton toggleButton, boolean value) {
 		return false;

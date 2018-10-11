@@ -4,6 +4,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.js_ku.zentao.IdeaZenTao;
 import com.js_ku.zentao.api.ZenTaoApi;
 import com.js_ku.zentao.api.model.ZenTaoConstant;
+import com.js_ku.zentao.component.ShowBugNumberAction;
 import icons.IdeaZenTaoIcons;
 
 import java.util.Timer;
@@ -18,10 +19,11 @@ public class ZenTaoTimer {
 
 
 
-	private volatile boolean paused = !IdeaZenTao.isEnabled();
+	public static volatile  boolean paused = !IdeaZenTao.isEnabled();
 
 
 	private Timer timer;
+	private TimerTask task;
 
 
 
@@ -32,10 +34,17 @@ public class ZenTaoTimer {
 	public void start(AnActionEvent e){
 
 
-		TimerTask task = new TimerTask() {
+		if (paused){
+			return;
+		}
+
+		 task = new TimerTask() {
 			@Override
 			public void run() {
-				if (!paused && IdeaZenTao.isLogin()){
+				if (paused){
+					cancelTimer(e);
+
+				} else if (IdeaZenTao.isLogin()){
 					Integer bugSize = ZenTaoApi.getSizeBugs();
 					e.getPresentation().setText(String.format(ZenTaoConstant.ZEN_TAO_BUG_POINT,bugSize));
 					e.getPresentation().setIcon(IdeaZenTaoIcons.getIconByBugSize(bugSize));
@@ -45,8 +54,17 @@ public class ZenTaoTimer {
 
 			}};
 		timer = new Timer();
-		timer.schedule(task, ONE_SECOND, 10000);
+		timer.schedule(task, ONE_SECOND*100, ONE_SECOND);
 	}
 
+	public void cancelTimer(AnActionEvent e){
+	    if (timer != null){
+            timer.cancel();
+        }
+        if (task != null){
+			task.cancel();
+        }
+		ShowBugNumberAction.paused(e);
+	}
 }
 

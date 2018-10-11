@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>js-ku.com.IdeaZenTao</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <name>IdeaZenTao</name>
+    <vendor email="lixiaoshenxian@gmail.com" url="https://github.com/Da-Li/IdeaZenTao">IdeaZenTao</vendor>
 
     <description><![CDATA[
       <h2>IdeaZenTao</h2>

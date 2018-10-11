@@ -3,10 +3,13 @@ package com.js_ku.zentao.component;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
+import com.intellij.openapi.options.ShowSettingsUtil;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.text.StringUtil;
 import com.js_ku.zentao.api.ZenTaoApi;
 import com.js_ku.zentao.api.model.ZenTaoConstant;
 import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -85,7 +88,9 @@ public class IdeaZenTaoConfigurable implements Configurable {
 	public void disposeUIResources() {
 
 	}
-
+	public static void show(@NotNull final Project project) {
+		ShowSettingsUtil.getInstance().showSettingsDialog(project,  IdeaZenTaoConfigurable.class);
+	}
 	@Override
 	public void reset() {
 		zentaoUrl.setText(prop.getValue(ZenTaoConstant.ZEN_TAO_URL));
@@ -94,8 +99,6 @@ public class IdeaZenTaoConfigurable implements Configurable {
 	}
 
 	public void notice(String message) {
-
-
 
 		JPanel panel = new JPanel();
 		panel.add(new JLabel(message));
@@ -106,12 +109,6 @@ public class IdeaZenTaoConfigurable implements Configurable {
 		dialog.setContentPane(panel);
 		dialog.setVisible(true);
 
-//		Notification n = new Notification(
-//				"Settings Error",
-//				"Notice",
-//				message,
-//				NotificationType.ERROR);
-//		Notifications.Bus.notify(n);
 	}
 
 

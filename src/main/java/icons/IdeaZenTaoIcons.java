@@ -10,6 +10,7 @@ public final class IdeaZenTaoIcons {
      public static final String theme = IdeaZenTao.getTheme();
      public static final Icon NO_LOGIN = IconLoader.getIcon(theme +"/unlogin.png");
      public static final Icon WEB = IconLoader.getIcon(theme +"/web.png");
+     public static final Icon PAUSED = IconLoader.getIcon(theme +"/paused.png");
 
      public static Icon getIconByBugSize(int bugSize){
 
