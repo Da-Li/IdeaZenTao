@@ -32,7 +32,6 @@ public class ZenTaoTimer {
 	}
 
 	public static void getBugsChangeIcon(AnActionEvent e){
-		System.out.println("timer execute");
 		if (paused){
 			return;
 		}
@@ -64,7 +63,6 @@ public class ZenTaoTimer {
 	}
 
 	public static void cancelTimer(AnActionEvent e){
-		System.out.println("暂停");
 	    if (timer != null){
             timer.cancel();
 			timer = null;
