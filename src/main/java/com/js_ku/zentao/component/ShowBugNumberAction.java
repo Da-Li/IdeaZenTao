@@ -23,7 +23,9 @@ public class ShowBugNumberAction extends AnAction  {
 			boolean paused = ZenTaoTimer.paused;
 			ZenTaoTimer.paused = !paused;
 			if (!ZenTaoTimer.paused){
-				new ZenTaoTimer().start(e);
+				ZenTaoTimer.getBugsChangeIcon(e);
+			} else {
+				ZenTaoTimer.cancelTimer(e);
 			}
 
 		}
