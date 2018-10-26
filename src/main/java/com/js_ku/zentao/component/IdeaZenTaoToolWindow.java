@@ -16,18 +16,22 @@ import java.awt.event.MouseEvent;
 /**
  * Created by da-li on 2018/2/9.
  */
-public class MyToolWindowFactory implements ToolWindowFactory {
+public class IdeaZenTaoToolWindow implements ToolWindowFactory {
 
 	@Override
 	public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
 
-		Frame frame = new Frame();
 		JPanel p1 = new JPanel();
+		p1.setLayout(new GridLayout(0, 1));
+		p1.setForeground (Color.BLUE);
+
+
 
 
 		ZenTaoApi.getBugs().getData().getBugs().forEach(bug->{
 
-			JLabel jLabel = new JLabel(bug.getTitle());
+			JLabel jLabel = new JLabel(bug.getTitle(),SwingConstants.CENTER);
+			JLabel jLabel1 = new JLabel(bug.getTitle(),SwingConstants.CENTER);
 			jLabel.addMouseListener(new MouseAdapter()   {
 
 				public void mouseClicked(MouseEvent e)
@@ -39,6 +43,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
 				}
 			});
 			p1.add(jLabel);
+			p1.add(jLabel1);
 		});
 		toolWindow.getComponent().add(p1);
 

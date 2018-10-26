@@ -32,9 +32,11 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!--window tool -->
-        <toolWindow id="IdeaZenTao" icon="/red/icon/windowTool.png" anchor="right" factoryClass="com.js_ku.zentao.component.MyToolWindowFactory"/>
+        <toolWindow id="IdeaZenTao" icon="/red/icon/windowTool.png" anchor="bottom" factoryClass="com.js_ku.zentao.component.IdeaZenTaoToolWindow"/>
         <!--settings-->
         <applicationConfigurable instance="com.js_ku.zentao.component.IdeaZenTaoConfigurable"/>
+        <checkinHandlerFactory implementation="com.js_ku.zentao.component.IdeanZenTaoCheckInHandlerFactory"/>
+
     </extensions>
 
     <actions>
